@@ -1,0 +1,36 @@
+---
+title: "Assignment 6: ggmaps"
+author: "Kayla Ippongi"
+output: pdf_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(jpeg)
+library(png)
+```
+
+## Regular Bude Map
+-map with markers of Bude & North Cornwall Golf Club, Bude Tide Pools, 
+The Carrier's Inn Pub and Compass Point lookout
+
+\includegraphics[width=10in]{img/regmap.png}
+
+## Water Color Bude Map
+-same map with markers of Bude & North Cornwall Golf Club, Bude Tide Pools, 
+The Carrier's Inn Pub and Compass Point lookout 
+
+\includegraphics[width=10in]{img/watercolor-map.png}
+
+## Bude and North Cornwall Golf Club
+\includegraphics{img/golf}
+
+## Bude Tide Pools 
+\includegraphics{img/tidepools}
+
+## The Carrier's Inn Pub
+\includegraphics{img/pub}
+
+## Compass Point 
+\includegraphics{img/compasspoint}
