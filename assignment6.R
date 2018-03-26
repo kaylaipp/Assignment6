@@ -21,7 +21,9 @@ print(points12)
 path1 <- data.frame("longs" = c(longs[2],longs[4]), "lats" = c(lats[2],lats[4]))
 print(path1)
 
+
 #regular map
+png('regmap.png')
 map <-get_googlemap(center = c(lon=-4.550,lat=50.83),markers = points12,path=path1,zoom = 15)
 ggmap(map)
 map2<-ggmap(map)+
@@ -29,45 +31,16 @@ map2<-ggmap(map)+
     aes(x=longs,y=lats),
     data=points12, size = 1)
 plot(map2)
-
-saveRDS(map2,file="route_map.rds")
+dev.off()
 
 #water color map 
+png('watercolor-map.png')
 map3 <-get_map(location = c(-4.550,50.83),source = "google",zoom = 14,maptype = "watercolor")
 ggmap(map3)
-
 map4<-ggmap(map3)+
   geom_point(
     aes(x=longs,y=lats),
     data=points12, size = 4)
 plot(map4)
-
-saveRDS(map4,file="water_map.rds")
-
-##Pictures of locations :)
-
-Crooklet_Beach <- image_read('https://www.visitbude.info/wp-content/uploads/2016/07/Crooklets-Beach-Huts-1.jpg')%>%
-  image_scale("600x") %>%
-  image_annotate("Crooklet Beach", size = 20, color = "white")
-
-print(Crooklet_Beach)
-
-Summerleaze_Beach <- image_read('http://www.visitbude.info/wp-content/uploads/2015/04/Summerleaze-Decking-3.jpg')%>%
-  image_scale("600x") %>%
-  image_annotate("Summerleaze Beach", size = 20, color = "white")
-
-print(Summerleaze_Beach)
-
-Bude_North_Cornwall_Cricket_Club <- image_read('https://i.pinimg.com/originals/42/21/20/42212062d2dbf181dc1b1eaa160dce53.jpg')%>%
-  image_scale("600x") %>%
-  image_annotate("Bude North Cornwall Cricket Club", size = 20, color = "white")
-
-print(Bude_North_Cornwall_Cricket_Club)
-
-The_Barrel_at_Bude <- image_read('http://www.micropubassociation.co.uk/wp-content/uploads/barrel-800x800.jpg')%>%
-  image_scale("600x") %>%
-  image_annotate("The Barrel at Bude", size = 20, color = "white")
-
-print(The_Barrel_at_Bude)
-
+dev.off()
 
