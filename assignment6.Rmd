@@ -34,3 +34,9 @@ The Carrier's Inn Pub and Compass Point lookout
 
 ## Compass Point 
 \includegraphics{img/compasspoint}
+
+##The Summerleaze Beach
+\includegraphics[width=400pt,height=350pt]{img/SummerleazeBeach.jpg}
+
+##The Barrel at Bude
+\includegraphics[width=400pt,height=350pt]{img/TheBarrelatBude.jpg}
