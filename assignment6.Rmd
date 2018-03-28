@@ -3,25 +3,68 @@ title: "Assignment 6: ggmaps"
 author: "Kayla Ippongi"
 output: pdf_document
 ---
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(jpeg)
 library(png)
+library(ggmap)
+library(tidyverse)
+library(magick)
 ```
 
 ## Regular Bude Map
 -map with markers of Bude & North Cornwall Golf Club, Bude Tide Pools, 
 The Carrier's Inn Pub and Compass Point lookout
+```{r}
+#map with bude as center
+reg_map <- get_googlemap(center = c("Bude, England"),zoom = 13.5)
+location <- data.frame(lat=c(50.82664,50.828579,50.832559,50.828088, 50.832574, 
+                             50.830540,50.830066),
+                    lon=c(-4.543678,-4.556585,-4.544649,-4.543960, -4.553974, 
+                          -4.551349,-4.543023),
+                    legend=c("Bude","Compass Point","Bude & North Cornwall Golf Club",
+                        "The Carrier's Inn Pub","Bude Tide Pools","Summerleaze Beach",
+                        "The Barrel at Bude"))
+                           
+#path data frame from Carriers Inn Pub and Bude Golf Club
+start <- "Bude and North Cornwall Golf Club"
+end <- "The Carrier's Inn Pub, The Strand, Bude EX23 8QU, UK"
+path <- route(start, end, structure = "route")
 
-\includegraphics[width=10in]{img/regmap.png}
+ggmap(reg_map)+
+  geom_point(data = location, aes(x=lon, y=lat, color = legend), size =3)+
+  geom_path(aes(x = lon, y = lat), colour = "blue", size = 1, 
+            data = path, lineend = "round"
+  )
+```
+
 
 ## Water Color Bude Map
 -same map with markers of Bude & North Cornwall Golf Club, Bude Tide Pools, 
 The Carrier's Inn Pub and Compass Point lookout 
 
-\includegraphics[width=10in]{img/watercolor-map.png}
+```{r}
+#map with bude as center
+reg_map <- get_googlemap(center = c("Bude, England"),zoom = 13.5)
+location <- data.frame(lat=c(50.82664,50.828579,50.832559,50.828088, 50.832574, 
+                             50.830540,50.830066),
+                    lon=c(-4.543678,-4.556585,-4.544649,-4.543960, -4.553974, 
+                          -4.551349,-4.543023),
+                    legend=c("Bude","Compass Point","Bude & North Cornwall Golf Club",
+                        "The Carrier's Inn Pub","Bude Tide Pools","Summerleaze Beach",
+                        "The Barrel at Bude"))
+                           
+#path data frame from Carriers Inn Pub and Bude Golf Club
+start <- "Bude and North Cornwall Golf Club"
+end <- "The Carrier's Inn Pub, The Strand, Bude EX23 8QU, UK"
+path <- route(start, end, structure = "route")
+
+watercolor_map <- get_map(location = c("Bude, England"), source="stamen",maptype = "watercolor",zoom = 13)
+ggmap(watercolor_map)+  
+  geom_point(data = location, aes(x=lon, y=lat, color = legend), size =3)+
+  geom_path(aes(x = lon, y = lat), colour = "blue", size = 1, data = path, lineend = "round"
+  )
+```
 
 ## Bude and North Cornwall Golf Club
 \includegraphics{img/golf}
